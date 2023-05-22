@@ -1,16 +1,12 @@
 <script setup>
 import ProductItem from '@/components/ProductItem.vue'
+import { getProducts } from '@/core/services/api/api.js';
 import { ref } from 'vue';
 
-const productsList = ref({});
+const productsList = ref([]);
+productsList.value = await getProducts();
 
-async function getData() {
-    const res = await fetch("https://fakestoreapi.com/products");
-    const finalRes = await res.json();
-    productsList.value = finalRes;
-}
-
-getData()
+// console.log(productsList);
 </script>
 
 <template>
